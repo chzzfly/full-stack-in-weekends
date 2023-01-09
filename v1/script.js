@@ -63,28 +63,28 @@ btnShareAFact.addEventListener("click", function () {
 // console.log(factForm);
 
 // 1.1 自己使用原生的JS添加一个筛选按钮的功能，失败了，async的函数获取的数据不能直接使用，另外放在监听函数里也不能正常发挥作用。
-const btnScience = document.querySelector(".btn-science");
+// const btnScience = document.querySelector(".btn-science");
 
-btnScience.addEventListener("click", function () {
-  console.log("clicked");
-  async function loadFacts() {
-    const res = await fetch(
-      "https://pazyevznqbiqvbkvjcgv.supabase.co/rest/v1/facts",
-      {
-        headers: {
-          apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhenlldnpucWJpcXZia3ZqY2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMwOTIzNDEsImV4cCI6MTk4ODY2ODM0MX0.k1JnRT48wPKIq97-LukJQCD1WgL6T4fTUlrk5sWFAK8",
-          authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhenlldnpucWJpcXZia3ZqY2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMwOTIzNDEsImV4cCI6MTk4ODY2ODM0MX0.k1JnRT48wPKIq97-LukJQCD1WgL6T4fTUlrk5sWFAK8",
-        },
-      }
-    );
-    const data = await res.json();
-    // console.log(data);
-    const filteredData = data.filter((fact) => fact.category === "science");
-    creatFactsList(filteredData);
-  }
-});
+// btnScience.addEventListener("click", function () {
+//   console.log("clicked");
+//   async function loadFacts() {
+//     const res = await fetch(
+//       "https://pazyevznqbiqvbkvjcgv.supabase.co/rest/v1/facts",
+//       {
+//         headers: {
+//           apikey:
+//             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhenlldnpucWJpcXZia3ZqY2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMwOTIzNDEsImV4cCI6MTk4ODY2ODM0MX0.k1JnRT48wPKIq97-LukJQCD1WgL6T4fTUlrk5sWFAK8",
+//           authorization:
+//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhenlldnpucWJpcXZia3ZqY2d2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMwOTIzNDEsImV4cCI6MTk4ODY2ODM0MX0.k1JnRT48wPKIq97-LukJQCD1WgL6T4fTUlrk5sWFAK8",
+//         },
+//       }
+//     );
+//     const data = await res.json();
+//     // console.log(data);
+//     const filteredData = data.filter((fact) => fact.category === "science");
+//     creatFactsList(filteredData);
+//   }
+// });
 
 // 2. 创建dom元素，render the 获取的数据
 

@@ -34,11 +34,12 @@ const initialFacts = [
   },
 ];
 
+// 创建主组件App
 function App() {
   const appTitle = "Today I learned";
   return (
     <>
-      {/* Header */}
+      {/* Header，其实可以把这个当做一个单独的组件来做，会更清晰 */}
       <header className="header">
         <div className="logo">
           <img src="./logo.png" alt="logo" />
@@ -57,10 +58,12 @@ function App() {
   );
 }
 
+// 表单组件
 function NewFactForm() {
   return <form className="fact-form">Fact form</form>;
 }
 
+// 左侧分类组件按钮
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
   { name: "science", color: "#16a34a" },
@@ -73,46 +76,52 @@ const CATEGORIES = [
 ];
 
 function CategoryFilter() {
+  const catG = CATEGORIES.map((cat) => (
+    <li key={cat.name} className="category">
+      <button
+        className="btn btn-categories"
+        style={{
+          backgroundColor: cat.color,
+        }}
+      >
+        {cat.name}
+      </button>
+    </li>
+  ));
+
+  // arr.map()返回的值应该还是一个数组，验证一下。确实是数组，但typeof是显示是对象
+  // console.log(catG, typeof catG);
+  // for (const el of catG) console.log(el);
+
   return (
     <aside>
       <ul>
         <li className="category">
           <button className="btn btn-all-categories">All</button>
         </li>
-
         {/* 将上面数组的每一个对象的name的值，作为名字，color作为颜色 */}
-        {CATEGORIES.map((obj) => (
-          <li key={obj.name} className="category">
-            <button
-              className="btn btn-categories"
-              style={{
-                backgroundColor: obj.color,
-              }}
-            >
-              {obj.name}
-            </button>
-          </li>
-        ))}
+        {catG}
       </ul>
     </aside>
   );
 }
 
+// 右侧的新闻列表组件
 function FactsList() {
-  // 临时变量
+  // 临时变量存放数据
   const facts = initialFacts;
+  // 构建li数据块，箭头函数调用了另一个组件Fact()，即对数组中的每个元素使用Fact()函数进行处理
+  // todo fact={fact} 这个是什么意思？再看一遍lecture！
+  const factLi = facts.map((fact) => <Fact key={fact.id} fact={fact} />);
   return (
     <section>
-      <ul className="facts-list">
-        {facts.map((fact) => (
-          <Fact key={fact.id} fact={fact} />
-        ))}
-      </ul>
+      <ul className="facts-list">{factLi}</ul>
     </section>
   );
 }
 
-// 创建一个组件，关于每一条fact
+// 对facts数组里的每一个对象的处理，把数据弄成li的样子。
+// {fact}代表的是 `const {fact} = props`，上面的fact数据传过来是props，暂时这么理解。fixme
 function Fact({ fact }) {
   // const { factObj } = props;
 

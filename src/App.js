@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./style.css";
 
 const initialFacts = [
@@ -34,27 +35,76 @@ const initialFacts = [
   },
 ];
 
+/* 解释state
+// learn state by create a counter计数器
+
+function Counter() {
+  let [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <span style={{ fontSize: "40px" }}>{count}</span>
+      <button
+        className="btn btn-large"
+        onClick={() => {
+          console.log("clicked");
+          // setCount()，里面需要一个值，而我给他一个值，这个值每次会加1
+          setCount((count += 1));
+        }}
+      >
+        +1
+      </button>
+    </div>
+  );
+}
+*/
+
 // 创建主组件App
 function App() {
-  const appTitle = "Today I learned";
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
       {/* Header，其实可以把这个当做一个单独的组件来做，会更清晰 */}
-      <header className="header">
-        <div className="logo">
-          <img src="./logo.png" alt="logo" />
-          <h1>{appTitle}</h1>
-        </div>
-        <button className="btn btn-large shareAFact">Share a fact</button>
-      </header>
+      <Header showForm={showForm} setShowForm={setShowForm} />
 
-      <NewFactForm />
+      {showForm ? <NewFactForm /> : null}
 
       <main className="main">
         <CategoryFilter />
         <FactsList />
       </main>
     </>
+  );
+}
+
+// 头部组件
+
+function Header(props) {
+  //提示我们 props 是什么东西？
+  // console.log(props);
+  const { showForm, setShowForm } = props;
+
+  const appTitle = "Today I learned";
+  return (
+    <header className="header">
+      <div className="logo">
+        <img src="./logo.png" alt="logo" />
+        <h1>{appTitle}</h1>
+      </div>
+      <button
+        className="btn btn-large shareAFact"
+        onClick={
+          () => setShowForm((show) => !show)
+          //   {
+          //   if (showForm === false) setShowForm(true);
+          //   else setShowForm(false);
+          // }
+        }
+      >
+        {showForm ? "close" : "Share a fact"}
+      </button>
+    </header>
   );
 }
 

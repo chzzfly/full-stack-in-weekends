@@ -45,7 +45,7 @@ const CATEGORIES = [
   { name: "news", color: "#8b5cf6" },
 ];
 
-// 1. 用户未点击发布时，隐藏表达，点击时，打开表单
+// 1. 用户未点击发布时，隐藏表单，点击时，打开表单
 
 const btnShareAFact = document.querySelector(".shareAFact");
 const factForm = document.querySelector(".fact-form");

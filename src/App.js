@@ -65,7 +65,7 @@ function App() {
 
   return (
     <>
-      {/* Header，其实可以把这个当做一个单独的组件来做，会更清晰 */}
+      {/* Header，其实可以把这个当做一个单独的组件来做，会更清晰。第10节这么做了，会涉及到props等知识比较复杂！ */}
       <Header showForm={showForm} setShowForm={setShowForm} />
 
       {showForm ? <NewFactForm /> : null}
@@ -81,7 +81,7 @@ function App() {
 // 头部组件
 
 function Header(props) {
-  //提示我们 props 是什么东西？
+  //提示我们 props 是什么东西？就是在父组件中传下来的数据信息
   // console.log(props);
   const { showForm, setShowForm } = props;
 
@@ -108,12 +108,6 @@ function Header(props) {
   );
 }
 
-// 表单组件
-function NewFactForm() {
-  return <form className="fact-form">Fact form</form>;
-}
-
-// 左侧分类组件按钮
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
   { name: "science", color: "#16a34a" },
@@ -124,6 +118,42 @@ const CATEGORIES = [
   { name: "history", color: "#f97316" },
   { name: "news", color: "#8b5cf6" },
 ];
+
+// 表单组件
+function NewFactForm() {
+  const [text, setText] = useState("");
+  const [source, setSource] = useState("");
+  const [category, setCategory] = useState("");
+
+  return (
+    <form className="fact-form">
+      <input
+        type="text"
+        placeholder="Share a fact with the world..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <span>200</span>
+      <input
+        type="text"
+        placeholder="Trustworthy source..."
+        value={source}
+        onChange={(e) => setSource(e.target.value)}
+      />
+      <select>
+        <option value="">Choose category:</option>
+        {CATEGORIES.map((cat) => (
+          <option key={cat.name} value={cat.name}>
+            {cat.name.toUpperCase()}
+          </option>
+        ))}
+      </select>
+      <button className="btn btn-large">Post</button>
+    </form>
+  );
+}
+
+// 左侧分类按钮组件
 
 function CategoryFilter() {
   const catG = CATEGORIES.map((cat) => (

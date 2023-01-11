@@ -261,6 +261,18 @@ ul {
   }
 }
 
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
 .hidden {
   display: none;
 }

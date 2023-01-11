@@ -175,7 +175,7 @@ function isValidHttpUrl(string) {
 // 表单组件
 function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState("");
-  const [source, setSource] = useState("https://example.com");
+  const [source, setSource] = useState("https://");
   const [category, setCategory] = useState("");
   const [isUpLoading, setIsUpLoading] = useState(false);
   const textLength = text.length;

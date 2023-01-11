@@ -60,12 +60,6 @@ body {
   height: 90vh;
 }
 
-@media (max-width: 900px) {
-  .main {
-    grid-template-columns: 1fr;
-  }
-}
-
 section {
   overflow: scroll;
   padding-bottom: 40px;
@@ -261,10 +255,9 @@ ul {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .header {
     flex-direction: column;
-    align-items: flex-start;
     gap: 24px;
   }
   .main {
